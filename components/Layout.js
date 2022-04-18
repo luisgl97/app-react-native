@@ -4,7 +4,7 @@ import React from 'react'
 const Layout = ({children}) => {
   return (
     <View style={styles.container}>
-        <StatusBar barStyle="light-content" backgroundColor="#222f3e" />
+        <StatusBar barStyle="light-content" backgroundColor="#363636" />
       {children}
     </View>
   )
@@ -13,7 +13,7 @@ const Layout = ({children}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#34495E',
+        backgroundColor: '#151515',
         // alignItems: 'center',
         // justifyContent: 'center',
         padding: 20,

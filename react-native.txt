@@ -3,13 +3,14 @@ C:\Users\PC\Desktop\Proyectos>expo init
 √ What would you like to name your app? ... app-react-native
 √ Choose a template: » blank               a minimal app as clean as an empty canvas
 
-C:\Users\PC\Desktop\Proyectos\app-react-native>npm install @eact-navigation/native
-
-C:\Users\PC\Desktop\Proyectos\app-react-native>ee-screens react-native-safe-area-context
-
+C:\Users\PC\Desktop\Proyectos\app-react-native>npm install @react-navigation/native
+C:\Users\PC\Desktop\Proyectos\app-react-native>expo install react-native-screens react-native-safe-area-context
 C:\Users\PC\Desktop\Proyectos\app-react-native>npm install @react-navigation/native-stack
-
 C:\Users\PC\Desktop\Proyectos\app-react-native>expo install react-native-safe-area-context
+
+----------------------------------------------------------------
+
+
 --------------
 Iniciar app (expo start o npm start)
 --------------

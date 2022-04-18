@@ -1,41 +1,37 @@
 import { FlatList, RefreshControl } from "react-native";
 import React, { useState, useEffect } from "react";
-import AprendizItem from "./AprendizItem";
-import { getAprendices, deleteAprendiz } from "../api";
+import OrderItem from "./OrderItem";
+import { getOrders } from "../api";
 import { useIsFocused } from "@react-navigation/native";
-const AprendizList = () => {
-  const [aprendices, setAprendices] = useState([]);
+const OrderList = ({jwt}) => {
+  const [orders, setOrders] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const isFocused = useIsFocused();
 
-  const loadAprendices = async () => {
-    const data = await getAprendices();
-    console.log(data);
-    setAprendices(data);
+  const loadOrders = async () => {
+    const data = await getOrders(jwt);
+
+    setOrders(data);
   };
 
   useEffect(() => {
     setRefreshing(true);
-    loadAprendices();
+    loadOrders();
     setRefreshing(false);
   }, [isFocused]);
 
-  const handleDelete = async (id) => {
-    await deleteAprendiz(id);
-    await loadAprendices();
-  };
   const renderItem = ({ item }) => {
-    return <AprendizItem aprendiz={item} handleDelete={handleDelete}/>;
+    return <OrderItem order={item} jwt={jwt}/>;
   };
 
   const onRefresh = React.useCallback(async () => {
-    await loadAprendices();
+    await loadOrders();
   }, []);
 
   return (
     <FlatList
       style={{ width: "100%" }}
-      data={aprendices}
+      data={orders}
       keyExtractor={(item) => item.id}
       renderItem={renderItem}
       refreshControl={
@@ -49,4 +45,4 @@ const AprendizList = () => {
   );
 };
 
-export default AprendizList;
+export default OrderList;

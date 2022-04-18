@@ -1,13 +1,19 @@
 import React from "react";
 
-import AprendizList from "../components/AprendizList";
+import OrderList from "../components/OrderList";
 import Layout from "../components/Layout";
 
-const HomeScreen = () => {
+//Obtener los props de navigation InicioSesionScreen
+
+const HomeScreen = ({route}) => {
+  
+  //Obtener props de InicioSesionScreen
+  const jwt = route.params.jwt;
+
   return (
     <Layout>
-      <AprendizList />
-    </Layout>
+      <OrderList jwt={jwt}/>
+    </Layout> 
   );
 };
 

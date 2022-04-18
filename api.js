@@ -1,87 +1,59 @@
-// const API = 'https://7xjrtq0o9b.execute-api.us-west-2.amazonaws.com/tests';
-const API = 'https://5u8y9belt4.execute-api.us-west-2.amazonaws.com/aprendiz';
 
-export const getAprendices = async () => {
+const APIU = `https://strapi-ecommerce.herokuapp.com/auth/local`;
+const APISTRAPI = 'https://strapi-ecommerce.herokuapp.com/orders';
+
+export const getOrders = async (jwt) => {
     try {
-        const res = await fetch(API);
+        
+        const res = await fetch(APISTRAPI, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${jwt}`,
+            },
+        });
+
         const data = await res.json();
-        const {body} = data;
-        const {element} = body;
-        return await element;
-        // console.log(data.body.aprendiz);
+        return data;
+
     } catch (error) {
         console.log(error)
     }
 }
 
-export const getAprendiz = async (id) => {
-    try {
-        
-        const res = await fetch(`${API}/${id}`);
-        const data = await res.json();
-        // console.log("dataaaaaaaaaaaa",data);
-        const {body} = data;
-        return await body;
-        
-    } catch (error) {
-        console.log(error)
-    }
-}
 
-export const saveAprendiz= async (newAprendiz) => {
+export const inicioSesion= async (usuario) => {
     try {
-        const res = await fetch(API, {
+        const res = await fetch(APIU, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(newAprendiz)
+            body: JSON.stringify(usuario)
         });
         const data = await res.json();
-        const {body} = data;
-        const {element} = body;
-        return await element;
+        return data;
         // console.log(data.body.aprendiz);
     } catch (error) {
         console.log(error)
     }
 }
 
-export const deleteAprendiz = async (id) => {
+export const getOrder= async (jwt, id) => {
     try {
-        const res = await fetch(`${API}/${id}`, {
-            method: 'DELETE',
+    
+        const res = await fetch(`${APISTRAPI}/${id}`, {
+            method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-        const data = await res.json();
-        const {body} = data;
-        const {element} = body;
-        return await element;
-        // console.log(data.body.aprendiz);
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-export const updateAprendiz= async (id, newAprendiz) => {
-    try {
-        const res = await fetch(`${API}/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${jwt}`,
             },
-            body: JSON.stringify(newAprendiz)
         });
+
         const data = await res.json();
-        const {body} = data;
-        console.log(data);
-        return await body;
-        // console.log(data.body.aprendiz);
+        return data;
+
     } catch (error) {
         console.log(error)
     }
